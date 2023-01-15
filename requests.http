@@ -21,7 +21,7 @@ POST https://localhost/cart
 
 ### Add product to cart
 
-PUT https://localhost/cart/{{cart_id}}/f6635017-982f-4544-9ac5-3d57107c0f0d
+PUT https://localhost/cart/{{cart_id}}/f6635017-982f-4544-9ac5-3d57107c0342
 
 ### Remove product from cart
 
