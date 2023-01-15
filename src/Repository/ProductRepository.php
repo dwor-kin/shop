@@ -35,12 +35,23 @@ class ProductRepository implements ProductProvider, ProductService
 
     public function exists(string $productId): bool
     {
-        return $this->repository->find($productId) !== null;
+        return null !== $this->repository->find($productId);
     }
 
     public function add(string $name, int $price): Product
     {
         $product = new \App\Entity\Product(Uuid::uuid4(), $name, $price);
+
+        $this->entityManager->persist($product);
+        $this->entityManager->flush();
+
+        return $product;
+    }
+
+    public function update(Product $product, string $name, int $price): Product
+    {
+        $product->setName($name);
+        $product->setPrice($price);
 
         $this->entityManager->persist($product);
         $this->entityManager->flush();
