@@ -1,0 +1,32 @@
+### Add product to catalog
+
+POST https://localhost/products
+Content-Type: application/x-www-form-urlencoded
+
+name=Example product 0&price=1200
+
+### Remove product from catalog
+
+DELETE https://localhost/products/ee31e1b5-18ec-478b-bfe5-b310019529e5
+
+### List products
+
+GET https://localhost/products
+
+### Create cart
+
+POST https://localhost/cart
+
+> {% client.global.set("cart_id", response.body.cart_id) %}
+
+### Add product to cart
+
+PUT https://localhost/cart/{{cart_id}}/f6635017-982f-4544-9ac5-3d57107c0f0d
+
+### Remove product from cart
+
+DELETE https://localhost/cart/{{cart_id}}/00c5560b-efb9-4277-beb8-5b4feb594779
+
+### Show cart
+
+GET https://localhost/cart/{{cart_id}}
