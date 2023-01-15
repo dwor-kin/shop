@@ -18,8 +18,6 @@ class CartRepository implements CartService
 
         $product = $this->entityManager->find(Product::class, $productId);
 
-        $this->entityManager->persist($product);
-
         // TODO: to i tak nie dziala :( straciłem już cierpliwość do tego
         if ($cart && $product && !$cart->hasProduct($product) && !$cart->isFull()) {
             $cart->addProduct($product);
