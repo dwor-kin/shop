@@ -2,6 +2,8 @@
 
 namespace App\Service\Catalog;
 
+use App\Entity\Product;
+
 interface ProductProvider
 {
     /**
