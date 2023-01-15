@@ -40,4 +40,14 @@ class Product implements \App\Service\Catalog\Product
     {
         return $this->priceAmount;
     }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->priceAmount = $price;
+    }
 }
