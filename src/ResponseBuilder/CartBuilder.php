@@ -13,6 +13,8 @@ class CartBuilder
             'products' => []
         ];
 
+        var_dump($cart->getProducts());
+        die();
         foreach ($cart->getProducts() as $product) {
             $data['products'][] = [
                 'id' => $product->getId(),

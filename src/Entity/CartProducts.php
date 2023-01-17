@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,14 +14,16 @@ class CartProducts
     public readonly int $id;
 
     #[ORM\ManyToOne(targetEntity: Cart::class, cascade: ["persist"])]
+    #[ORM\JoinColumn(name: 'cart_uuid', referencedColumnName: 'id')]
     private Cart $cart;
 
-    #[ORM\ManyToOne(targetEntity: 'Product')]
-    #[ORM\JoinTable(name: 'product')]
-    private Collection $products;
+    #[ORM\ManyToOne(targetEntity: Product::class, cascade: ["persist"])]
+    #[ORM\JoinColumn(name: 'product_uuid', referencedColumnName: 'id')]
+    private Product $product;
 
-    public function __construct()
+    public function __construct(Cart $cart, Product $product)
     {
-        $this->products = new ArrayCollection();
+        $this->cart = $cart;
+        $this->product = $product;
     }
 }

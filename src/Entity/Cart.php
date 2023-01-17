@@ -2,11 +2,8 @@
 
 namespace App\Entity;
 
-use App\Service\Catalog\Product;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use JetBrains\PhpStorm\Pure;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -19,14 +16,12 @@ class Cart implements \App\Service\Cart\Cart
     #[ORM\Column(type: 'uuid', nullable: false)]
     private UuidInterface $id;
 
-    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: 'CartProducts')]
-    #[ORM\JoinTable(name: 'cart_products')]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: CartProducts::class, cascade: ["persist"])]
     private Collection $products;
 
     public function __construct(string $id)
     {
         $this->id = Uuid::fromString($id);
-        $this->products = new ArrayCollection();
     }
 
     public function getId(): string
