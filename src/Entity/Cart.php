@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -50,17 +51,17 @@ class Cart implements \App\Service\Cart\Cart
     }
 
     #[Pure]
-    public function hasProduct(\App\Entity\Product $product): bool
+    public function hasProduct(Product $product): bool
     {
         return $this->products->contains($product);
     }
 
-    public function addProduct(\App\Entity\Product $product): void
+    public function addProduct(Product $product): void
     {
         $this->products->add($product);
     }
 
-    public function removeProduct(\App\Entity\Product $product): void
+    public function removeProduct(Product $product): void
     {
         $this->products->removeElement($product);
     }
